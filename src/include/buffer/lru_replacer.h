@@ -12,9 +12,12 @@
 
 #pragma once
 
+#include <cstddef>
 #include <list>
-#include <mutex>  // NOLINT
-#include <vector>
+#include <map>
+#include <mutex>         // NOLINT
+#include <shared_mutex>  // NOLINT
+#include <unordered_map>
 
 #include "buffer/replacer.h"
 #include "common/config.h"
@@ -47,6 +50,10 @@ class LRUReplacer : public Replacer {
 
  private:
   // TODO(student): implement me!
+  size_t capacity_;
+  std::shared_mutex mutex_;
+  std::list<frame_id_t> list_;
+  std::unordered_map<size_t, std::list<frame_id_t>::iterator> map_;
 };
 
 }  // namespace bustub
