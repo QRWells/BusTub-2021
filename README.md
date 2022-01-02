@@ -9,6 +9,6 @@ The course website can be found [here](https://15445.courses.cs.cmu.edu/fall2021
 # Progress
 - [x] C++ Primer
 - [x] Buffer Pool Manager
-- [ ] Hash Index
+- [x] Extendible Hash Index
 - [ ] Query Execution
 - [ ] Concurrency Control

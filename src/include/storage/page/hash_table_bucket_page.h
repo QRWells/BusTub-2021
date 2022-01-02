@@ -118,6 +118,14 @@ class HashTableBucketPage {
   void SetReadable(uint32_t bucket_idx);
 
   /**
+   * SetReadable - Updates the bitmap to indicate that the entry at
+   * bucket_idx is unreadable.
+   *
+   * @param bucket_idx the index to update
+   */
+  void SetUnreadable(uint32_t bucket_idx);
+
+  /**
    * @return the number of readable elements, i.e. current size
    */
   uint32_t NumReadable();
@@ -143,6 +151,8 @@ class HashTableBucketPage {
   // 0 if tombstone/brand new (never occupied), 1 otherwise.
   char readable_[(BUCKET_ARRAY_SIZE - 1) / 8 + 1];
   MappingType array_[0];
+
+  static inline auto GetLocation(uint32_t bucket_idx) { return std::make_pair(bucket_idx / 8, bucket_idx % 8); }
 };
 
 }  // namespace bustub
